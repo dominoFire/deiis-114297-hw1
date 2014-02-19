@@ -1,19 +1,19 @@
 
 
-/* First created by JCasGen Fri Feb 14 21:01:45 CST 2014 */
+/* First created by JCasGen Wed Feb 19 10:20:06 CST 2014 */
+package mx.itam.deiis.hw1;
 
 import org.apache.uima.jcas.JCas; 
 import org.apache.uima.jcas.JCasRegistry;
 import org.apache.uima.jcas.cas.TOP_Type;
 
-import org.apache.uima.jcas.tcas.DocumentAnnotation;
 
 
-/** Represents a sentence
- * Updated by JCasGen Fri Feb 14 21:01:50 CST 2014
+/** Represents a sentence of the input
+ * Updated by JCasGen Wed Feb 19 10:20:06 CST 2014
  * XML source: /home/perez/ITAM/DEIIS/workspace/hw1-114297/src/main/resources/hw1-114297-typesystem.xml
  * @generated */
-public class Sentence extends DocumentAnnotation {
+public class Sentence extends PipelineAnnotation {
   /** @generated
    * @ordered 
    */
@@ -73,6 +73,28 @@ public class Sentence extends DocumentAnnotation {
    */
   private void readObject() {/*default - does nothing empty block */}
      
-}
+ 
+    
+  //*--------------*
+  //* Feature: text
+
+  /** getter for text - gets Text of the sentence. It's clear that you can get the text of this annotation using the begin and end indexes of the uima.cas.Annotation class, but it's more comfortable to get a direct reference to the text
+   * @generated
+   * @return value of the feature 
+   */
+  public String getText() {
+    if (Sentence_Type.featOkTst && ((Sentence_Type)jcasType).casFeat_text == null)
+      jcasType.jcas.throwFeatMissing("text", "mx.itam.deiis.hw1.Sentence");
+    return jcasType.ll_cas.ll_getStringValue(addr, ((Sentence_Type)jcasType).casFeatCode_text);}
+    
+  /** setter for text - sets Text of the sentence. It's clear that you can get the text of this annotation using the begin and end indexes of the uima.cas.Annotation class, but it's more comfortable to get a direct reference to the text 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setText(String v) {
+    if (Sentence_Type.featOkTst && ((Sentence_Type)jcasType).casFeat_text == null)
+      jcasType.jcas.throwFeatMissing("text", "mx.itam.deiis.hw1.Sentence");
+    jcasType.ll_cas.ll_setStringValue(addr, ((Sentence_Type)jcasType).casFeatCode_text, v);}    
+  }
 
     

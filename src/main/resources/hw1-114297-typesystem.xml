@@ -1,84 +1,146 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
     <name>hw1-114297-typesystem</name>
-    <description>Type system for Homework 1</description>
+    <description>Type System for Homework 1
+</description>
     <version>1.0</version>
     <vendor>Fernando Aguilar</vendor>
   <types>
     <typeDescription>
-      <name>Question</name>
-      <description/>
-      <supertypeName>uima.cas.TOP</supertypeName>
-    <features>
+      <name>mx.itam.deiis.hw1.PipelineAnnotation</name>
+      <description>This Type stores the name of the annotator that generates the annotation. 
+Also, this type has a slot (attribute) for storing the confidence evaluated by the creating annotator.
+All classes from Homework 1 must inherit this Type.</description>
+      <supertypeName>uima.tcas.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>pipelineCreator</name>
+          <description>Name of the annotator that generates this annotation</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>confidenceScore</name>
+          <description>the confidence score assigned to the annotation by the component that generates this annotation.</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>mx.itam.deiis.hw1.Sentence</name>
+      <description>Represents a sentence of the input
+</description>
+      <supertypeName>mx.itam.deiis.hw1.PipelineAnnotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>text</name>
+          <description>Text of the sentence. It's clear that you can get the text of this annotation using the begin and end indexes of the uima.cas.Annotation class, but it's more comfortable to get a direct reference to the text</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>mx.itam.deiis.hw1.Question</name>
+      <description>Represents a Question, which it consists of one Sentence
+</description>
+      <supertypeName>mx.itam.deiis.hw1.PipelineAnnotation</supertypeName>
+      <features>
         <featureDescription>
           <name>numAnswers</name>
-          <description/>
+          <description>Number of answers found for this question, without taking in consideration whether or not they are correct</description>
           <rangeTypeName>uima.cas.Integer</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>precisionAtN</name>
+          <description>The precition@N score indicates the proportion of correct answers from N retrieved answers for this question</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>sentence</name>
+          <description>The sentence that forms the question
+</description>
+          <rangeTypeName>mx.itam.deiis.hw1.Sentence</rangeTypeName>
         </featureDescription>
         <featureDescription>
           <name>answers</name>
-          <description>The lists of answers that this question have</description>
-          <rangeTypeName>uima.cas.FSArray</rangeTypeName>
-          <elementType>Answer</elementType>
-          <multipleReferencesAllowed>false</multipleReferencesAllowed>
+          <description>List of possible answers for this question, correct or incorrect</description>
+          <rangeTypeName>uima.cas.FSList</rangeTypeName>
+          <elementType>mx.itam.deiis.hw1.Answer</elementType>
         </featureDescription>
       </features>
     </typeDescription>
     <typeDescription>
-      <name>Answer</name>
-      <description/>
-      <supertypeName>uima.cas.TOP</supertypeName>
-    <features>
+      <name>mx.itam.deiis.hw1.Answer</name>
+      <description>A possible answer that responds to a specific question</description>
+      <supertypeName>mx.itam.deiis.hw1.PipelineAnnotation</supertypeName>
+      <features>
         <featureDescription>
           <name>isCorrect</name>
-          <description>Determines wheter this answers is correct for the question it references</description>
+          <description>Indicates if this answer is correct for a specific cuestion</description>
           <rangeTypeName>uima.cas.Boolean</rangeTypeName>
         </featureDescription>
         <featureDescription>
-          <name>question</name>
-          <description>The question this answer belongs to</description>
-          <rangeTypeName>Question</rangeTypeName>
+          <name>score</name>
+          <description>A special score that indicates the possible degree of certainty that answer a specific question</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
         </featureDescription>
-      </features>
-    </typeDescription>
-    <typeDescription>
-      <name>Token</name>
-      <description>A word token that has a start and endIndex</description>
-      <supertypeName>uima.tcas.Annotation</supertypeName>
-      <features>
-      	<featureDescription>
-      		<name>startIdx</name>
-      		<description>The index the token starts in the text</description>
-      		<rangeTypeName>uima.cas.Integer</rangeTypeName>
-      	</featureDescription>
-      	<featureDescription>
-      		<name>endIdx</name>
-      		<description>The index the token ends in the text</description>
-      		<rangeTypeName>uima.cas.Integer</rangeTypeName>
-      	</featureDescription>
-      </features>
-    </typeDescription>
-    <typeDescription>
-      <name>Sentence</name>
-      <description>Represents a sentence</description>
-      <supertypeName>uima.tcas.DocumentAnnotation</supertypeName>
-    </typeDescription>
-    <typeDescription>
-      <name>NGram</name>
-      <description>It's composed in tokens</description>
-      <supertypeName>uima.tcas.Annotation</supertypeName>
-    <features>
         <featureDescription>
-          <name>tokens</name>
-          <description>The tokens that composes tis n-gram</description>
-          <rangeTypeName>uima.cas.FSArray</rangeTypeName>
-          <elementType>Token</elementType>
+          <name>sentence</name>
+          <description>The sentence that forms the answer</description>
+          <rangeTypeName>mx.itam.deiis.hw1.Sentence</rangeTypeName>
         </featureDescription>
+        <featureDescription>
+          <name>question</name>
+          <description>The question that this answer belongs to</description>
+          <rangeTypeName>mx.itam.deiis.hw1.Question</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>mx.itam.deiis.hw1.Token</name>
+      <description>Represents a token from a sentence. This token has two indices: the indices inherited from uima.cas.Annotation class, which it points to the absolute reference of the SofA, and the local indices, that points to the indices that a sentence belongs to</description>
+      <supertypeName>mx.itam.deiis.hw1.PipelineAnnotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>localStartIdx</name>
+          <description>The index that indicates where the token begins in the sentence</description>
+          <rangeTypeName>uima.cas.Integer</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>localStartEnd</name>
+          <description>The index that indicates where the token ends in the sentence</description>
+          <rangeTypeName>uima.cas.Integer</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>sentence</name>
+          <description>The sentence that this token belongs to
+</description>
+          <rangeTypeName>mx.itam.deiis.hw1.Sentence</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>ngrams</name>
+          <description>List of n-grams that references to this token
+</description>
+          <rangeTypeName>uima.cas.FSList</rangeTypeName>
+          <elementType>mx.itam.deiis.hw1.Ngram</elementType>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>mx.itam.deiis.hw1.Ngram</name>
+      <description>Represents a set of consecutive tokens, useful for text retrieval analisys. This Ngram class supports 1-grams, 2-grams and 3-grams.
+</description>
+      <supertypeName>mx.itam.deiis.hw1.PipelineAnnotation</supertypeName>
+      <features>
         <featureDescription>
           <name>n</name>
-          <description>The number of tokens that defines the N-gram
-</description>
+          <description>Number of tokens that contains this n-gram</description>
           <rangeTypeName>uima.cas.Integer</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>tokens</name>
+          <description>The tokens that forms this n-gram, sorted by appareance order. This array can contain up to 3 tokens</description>
+          <rangeTypeName>uima.cas.FSArray</rangeTypeName>
+          <elementType>mx.itam.deiis.hw1.Token</elementType>
         </featureDescription>
       </features>
     </typeDescription>
