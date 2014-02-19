@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
     <name>hw1-114297-typesystem</name>
-    <description>Type System for Homework 1
-</description>
+    <description>Type System for Homework 1</description>
     <version>1.0</version>
     <vendor>Fernando Aguilar</vendor>
   <types>
@@ -27,8 +26,7 @@ All classes from Homework 1 must inherit this Type.</description>
     </typeDescription>
     <typeDescription>
       <name>mx.itam.deiis.hw1.Sentence</name>
-      <description>Represents a sentence of the input
-</description>
+      <description>Represents a sentence of the input</description>
       <supertypeName>mx.itam.deiis.hw1.PipelineAnnotation</supertypeName>
       <features>
         <featureDescription>
@@ -40,8 +38,7 @@ All classes from Homework 1 must inherit this Type.</description>
     </typeDescription>
     <typeDescription>
       <name>mx.itam.deiis.hw1.Question</name>
-      <description>Represents a Question, which it consists of one Sentence
-</description>
+      <description>Represents a Question, which it consists of one Sentence</description>
       <supertypeName>mx.itam.deiis.hw1.PipelineAnnotation</supertypeName>
       <features>
         <featureDescription>
@@ -56,8 +53,7 @@ All classes from Homework 1 must inherit this Type.</description>
         </featureDescription>
         <featureDescription>
           <name>sentence</name>
-          <description>The sentence that forms the question
-</description>
+          <description>The sentence that forms the question</description>
           <rangeTypeName>mx.itam.deiis.hw1.Sentence</rangeTypeName>
         </featureDescription>
         <featureDescription>
@@ -97,7 +93,7 @@ All classes from Homework 1 must inherit this Type.</description>
     </typeDescription>
     <typeDescription>
       <name>mx.itam.deiis.hw1.Token</name>
-      <description>Represents a token from a sentence. This token has two indices: the indices inherited from uima.cas.Annotation class, which it points to the absolute reference of the SofA, and the local indices, that points to the indices that a sentence belongs to</description>
+      <description>Represents a token from a sentence. This token type has two set of indices: the indices inherited from uima.cas.Annotation class, which it points to the absolute reference of the SofA, and the local indices, that points to the indices that a sentence belongs to</description>
       <supertypeName>mx.itam.deiis.hw1.PipelineAnnotation</supertypeName>
       <features>
         <featureDescription>
@@ -112,14 +108,12 @@ All classes from Homework 1 must inherit this Type.</description>
         </featureDescription>
         <featureDescription>
           <name>sentence</name>
-          <description>The sentence that this token belongs to
-</description>
+          <description>The sentence that this token belongs to</description>
           <rangeTypeName>mx.itam.deiis.hw1.Sentence</rangeTypeName>
         </featureDescription>
         <featureDescription>
           <name>ngrams</name>
-          <description>List of n-grams that references to this token
-</description>
+          <description>List of n-grams that references to this token</description>
           <rangeTypeName>uima.cas.FSList</rangeTypeName>
           <elementType>mx.itam.deiis.hw1.Ngram</elementType>
         </featureDescription>
@@ -127,8 +121,7 @@ All classes from Homework 1 must inherit this Type.</description>
     </typeDescription>
     <typeDescription>
       <name>mx.itam.deiis.hw1.Ngram</name>
-      <description>Represents a set of consecutive tokens, useful for text retrieval analisys. This Ngram class supports 1-grams, 2-grams and 3-grams.
-</description>
+      <description>Represents a set of consecutive tokens, useful for text retrieval analisys. This Ngram class supports 1-grams, 2-grams and 3-grams.</description>
       <supertypeName>mx.itam.deiis.hw1.PipelineAnnotation</supertypeName>
       <features>
         <featureDescription>

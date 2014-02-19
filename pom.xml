@@ -4,27 +4,20 @@
   <groupId>edu.cmu.lti.11791.f13.hw1</groupId>
   <artifactId>hw1-114297</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <repositories>
-    <repository>
-      <id>oaqa</id>
-      <url>http://mu.lti.cs.cmu.edu:8081/nexus/content/groups/course</url>
-    </repository>
-  </repositories>
-  <distributionManagement>
-    <repository>
-      <id>deployment</id>
-      <url>http://mu.lti.cs.cmu.edu:8081/nexus/content/repositories/course-releases</url>
-    </repository>
-    <snapshotRepository>
-      <id>snapshots</id>
-      <url>http://mu.lti.cs.cmu.edu:8081/nexus/content/repositories/course-snapshots</url>
-    </snapshotRepository>
-  </distributionManagement>
+  
+  <!-- removed repositores and distributionManagement sections -->
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <forceJavacCompilerUse>true</forceJavacCompilerUse>
+  </properties>
+  
   <build>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.0</version>
         <configuration>
           <source>1.6</source>
           <target>1.6</target>
@@ -46,8 +39,14 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.9.1</version>
+      </plugin>
     </plugins>
   </build>
+  
   <dependencies>
     <dependency>
       <groupId>org.apache.uima</groupId>
@@ -95,4 +94,7 @@
       <version>2.4.0</version>
     </dependency>
   </dependencies>
+  <scm>
+  	<url>scm:git:git@github.com:dominoFire/deiis-114297-hw1.git</url>
+  </scm>
 </project>
